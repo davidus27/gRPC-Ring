@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package owr;
+
+// The string reversal service definition.
+service Owr {
+    // Function invoked to send the request
+    rpc sendMessage(owrRequest) returns (owrResponse) {}
+    rpc sendAliveMessage(aliveRequest) returns (aliveResponse) {}
+}
+
+// The response for AmAlive message
+message aliveRequest {
+    int32 nodeid = 1;
+}
+
+
+// The response for AmAlive message
+message aliveResponse {
+}
+
+// The request message containing the original string
+message owrRequest {
+    int32 receiverid = 1;
+    int32 senderid = 2;
+    string content  = 3;
+}
+
+// The response message containing the reversed string
+message owrResponse {
+    // 0 delivered, 1 resent
+    int32 code = 1;
+}
