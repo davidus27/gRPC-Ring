@@ -92,23 +92,27 @@ class Node(owr_pb2_grpc.OwrServicer):
         if request.receiverid == self.node_id:
             logging.info("Message received from node " + str(request.senderid))
             logging.info("Message content: " + request.content)
-            return
+            return owr_pb2.owr_response()
         
         # if not, forward the message to the next node
         logging.info("Message forwarded to node " + str(self.next_node.node_id))
         direction = Direction(request.sending_direction)
         self.send_message(request.senderid, request.content, direction)
+        return owr_pb2.owr_response()
+
 
     def receive_alive_message(self, request, context):
        # this will run only on the pivot node
        alive_node = request.nodeid
        self.nodes_ready.add(alive_node)
        self.is_all_ready = len(self.nodes_ready) == self.nodes_amount
+       
+       logging.info("Nodes " + str(self.nodes_ready) + " is ready")
+       return owr_pb2.alive_response()
 
     def __send_alive_message(self):
         response = self.pivot_node.send_am_alive()
         logging.info("Alive message sent to pivot node")
-        logging.info("Pivot node response: " + response)
 
     def send_message(self, sender_id: int, message: str, direction: Direction):
         mutex.acquire()

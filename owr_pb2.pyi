@@ -27,7 +27,5 @@ class owr_request(_message.Message):
     def __init__(self, receiverid: _Optional[int] = ..., senderid: _Optional[int] = ..., sending_direction: _Optional[int] = ..., content: _Optional[str] = ...) -> None: ...
 
 class owr_response(_message.Message):
-    __slots__ = ["code"]
-    CODE_FIELD_NUMBER: _ClassVar[int]
-    code: int
-    def __init__(self, code: _Optional[int] = ...) -> None: ...
+    __slots__ = []
+    def __init__(self) -> None: ...

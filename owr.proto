@@ -28,6 +28,4 @@ message owr_request {
 
 // The response message containing the 
 message owr_response {
-    // 0 delivered, 1 resent
-    int32 code = 1;
 }
