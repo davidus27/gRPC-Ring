@@ -6,8 +6,7 @@ import owr_pb2 as owr__pb2
 
 
 class OwrStub(object):
-    """The string reversal service definition.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -15,30 +14,29 @@ class OwrStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.sendMessage = channel.unary_unary(
-                '/owr.Owr/sendMessage',
-                request_serializer=owr__pb2.owrRequest.SerializeToString,
-                response_deserializer=owr__pb2.owrResponse.FromString,
+        self.receive_message = channel.unary_unary(
+                '/owr.Owr/receive_message',
+                request_serializer=owr__pb2.owr_request.SerializeToString,
+                response_deserializer=owr__pb2.owr_response.FromString,
                 )
-        self.sendAliveMessage = channel.unary_unary(
-                '/owr.Owr/sendAliveMessage',
-                request_serializer=owr__pb2.aliveRequest.SerializeToString,
-                response_deserializer=owr__pb2.aliveResponse.FromString,
+        self.receive_alive_message = channel.unary_unary(
+                '/owr.Owr/receive_alive_message',
+                request_serializer=owr__pb2.alive_request.SerializeToString,
+                response_deserializer=owr__pb2.alive_response.FromString,
                 )
 
 
 class OwrServicer(object):
-    """The string reversal service definition.
-    """
+    """Missing associated documentation comment in .proto file."""
 
-    def sendMessage(self, request, context):
+    def receive_message(self, request, context):
         """Function invoked to send the request
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def sendAliveMessage(self, request, context):
+    def receive_alive_message(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -47,15 +45,15 @@ class OwrServicer(object):
 
 def add_OwrServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'sendMessage': grpc.unary_unary_rpc_method_handler(
-                    servicer.sendMessage,
-                    request_deserializer=owr__pb2.owrRequest.FromString,
-                    response_serializer=owr__pb2.owrResponse.SerializeToString,
+            'receive_message': grpc.unary_unary_rpc_method_handler(
+                    servicer.receive_message,
+                    request_deserializer=owr__pb2.owr_request.FromString,
+                    response_serializer=owr__pb2.owr_response.SerializeToString,
             ),
-            'sendAliveMessage': grpc.unary_unary_rpc_method_handler(
-                    servicer.sendAliveMessage,
-                    request_deserializer=owr__pb2.aliveRequest.FromString,
-                    response_serializer=owr__pb2.aliveResponse.SerializeToString,
+            'receive_alive_message': grpc.unary_unary_rpc_method_handler(
+                    servicer.receive_alive_message,
+                    request_deserializer=owr__pb2.alive_request.FromString,
+                    response_serializer=owr__pb2.alive_response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -65,11 +63,10 @@ def add_OwrServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class Owr(object):
-    """The string reversal service definition.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def sendMessage(request,
+    def receive_message(request,
             target,
             options=(),
             channel_credentials=None,
@@ -79,14 +76,14 @@ class Owr(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/owr.Owr/sendMessage',
-            owr__pb2.owrRequest.SerializeToString,
-            owr__pb2.owrResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_message',
+            owr__pb2.owr_request.SerializeToString,
+            owr__pb2.owr_response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def sendAliveMessage(request,
+    def receive_alive_message(request,
             target,
             options=(),
             channel_credentials=None,
@@ -96,8 +93,8 @@ class Owr(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/owr.Owr/sendAliveMessage',
-            owr__pb2.aliveRequest.SerializeToString,
-            owr__pb2.aliveResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_alive_message',
+            owr__pb2.alive_request.SerializeToString,
+            owr__pb2.alive_response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
