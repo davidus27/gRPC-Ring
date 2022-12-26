@@ -1,9 +1,6 @@
 import logging
-import sys
 from concurrent import futures
-from threading import Thread, Lock
-
-mutex = Lock()
+from threading import Thread
 
 import grpc
 import owr_pb2
@@ -26,8 +23,7 @@ class Direction(Enum):
 
 
 class Connection:
-    def __init__(self, node_id, ip, port):
-        self.node_id = node_id
+    def __init__(self, ip, port):
         self.ip = ip
         self.port = port
 
@@ -44,17 +40,17 @@ class Connection:
         self.__create_channel()
         self.__create_stub()
 
-    def send_message(self, sender_id: int, message: str, direction: Direction):
-        return self.stub.recieve_message(owr_pb2.owr_request(
-            receiverid=self.node_id,
+    def send_message(self, sender_id: int, receiver_id: int, message: str, direction: Direction):
+        return self.stub.receive_message(owr_pb2.owr_request(
             senderid=sender_id,
-            sending_direction=direction,
-            content=message
+            receiverid=receiver_id,
+            content=message,
+            sending_direction=direction.value
         ))
     
-    def send_am_alive(self):
+    def send_am_alive(self, node_id: int):
         return self.stub.receive_alive_message(owr_pb2.alive_request(
-            nodeid=self.node_id
+            nodeid=node_id
         ))
 
     def initialize_server(self, node: grpc.Server):
@@ -69,10 +65,10 @@ class Node(owr_pb2_grpc.OwrServicer):
     def __init__(self, node_context: NodeInfo):
         self.node_id = node_context.node_id
         
-        self.previous_node = Connection(self.node_id, *node_context.previous)
-        self.skeleton_node = Connection(self.node_id, *node_context.skeleton)
-        self.next_node = Connection(self.node_id, *node_context.next)
-        self.pivot_node = Connection(self.node_id, *node_context.pivot)
+        self.previous_node = Connection(*node_context.previous)
+        self.skeleton_node = Connection(*node_context.skeleton)
+        self.next_node = Connection(*node_context.next)
+        self.pivot_node = Connection(*node_context.pivot)
         
 
         # info for the pivot node
@@ -87,17 +83,19 @@ class Node(owr_pb2_grpc.OwrServicer):
     def get_is_all_ready(self) -> bool:
         return self.is_all_ready
 
-    def receive_message(self, request):
+    def receive_message(self, request, context):
         # check if the message is for this node
+        logging.info("I am node " + str(self.node_id) + ", message is from " + str(request.senderid) + " to " + str(request.receiverid))
+
         if request.receiverid == self.node_id:
-            logging.info("Message received from node " + str(request.senderid))
-            logging.info("Message content: " + request.content)
+            logging.info("This message is for me")
+            logging.info("Message content: " + str(request.content))
             return owr_pb2.owr_response()
         
         # if not, forward the message to the next node
-        logging.info("Message forwarded to node " + str(self.next_node.node_id))
         direction = Direction(request.sending_direction)
-        self.send_message(request.senderid, request.content, direction)
+        self.inject_message(request.receiverid, request.content, direction)
+
         return owr_pb2.owr_response()
 
 
@@ -111,46 +109,52 @@ class Node(owr_pb2_grpc.OwrServicer):
        return owr_pb2.alive_response()
 
     def __send_alive_message(self):
-        response = self.pivot_node.send_am_alive()
+        response = self.pivot_node.send_am_alive(self.node_id)
         logging.info("Alive message sent to pivot node")
+        return response
 
-    def send_message(self, sender_id: int, message: str, direction: Direction):
-        mutex.acquire()
+    def inject_message(self, receiver_id: int, message: str, direction: Direction):
+        sender_id = self.node_id
+        logging.info("Message is going from " + str(sender_id) + " to the next node")
 
         if direction == Direction.NEXT:
-            response = self.next_node.send_message(sender_id, message, direction)
+            response = self.next_node.send_message(sender_id, receiver_id, message, direction)
         else:
-            response = self.previous_node.send_message(sender_id, message, direction)
+            response = self.previous_node.send_message(sender_id, receiver_id, message, direction)
 
-        mutex.release()
         return response
 
 
     def __create_skeleton(self):
         # start listening on the skeleton node
-        self.skeleton_node.initialize_server(self)
+        server = self.skeleton_node.initialize_server(self)
         # set ready state
         self.is_node_ready = True
-        logging.info("Skeleton node initialized")
+
+        # initialize the connection with the pivot node
+        self.pivot_node.initialize_client()
+
+        # inform the pivot node that this node is ready
+        self.__send_alive_message()
+
+        server.wait_for_termination()
+
+        logging.info("Skeleton node initialized: " +  str(self.node_id))
 
 
     def start_node(self):
         # create a thread that will listen until sel.is_ready == True
         # then send a message to the next node
         thread = Thread(target=self.__create_skeleton)
+        thread.daemon = True
         thread.start()
-
-        # initialize the connection with the pivot node
-        self.pivot_node.initialize_client()
-
+        
         # wait until the skeleton node is ready
         while not self.is_node_ready:
             pass
 
-        # inform the pivot node that this node is ready
-        self.__send_alive_message()
-
         logging.info("Skeleton node is ready")
+        return thread
 
 
     def initialize_connections(self):
@@ -179,14 +183,9 @@ def main():
     ip_address = "127.0.0.1"
 
     ring = []
+    threads = []
     ring_generator = get_ring_info(nodes_amount, ip_address, port)
     for node_id, pivot, previous, skeleton, next in ring_generator:
-        logging.info("Pivot:", pivot)
-        logging.info("Previous:", previous)
-        logging.info("Skeleton:", skeleton)
-        logging.info("Next:", next)
-        logging.info("Id:", node_id)
-        
         params = NodeInfo(node_id=node_id,
                 pivot=pivot,
                 previous=previous,
@@ -197,22 +196,28 @@ def main():
         node = Node(params)
         ring.append(node)
 
-    for node in ring:
-        logging.info("Started node id: " + str(node.node_id))
-        node.start_node()
-
     # set pivot
     ring[0].set_nodes_amount(nodes_amount)
 
-    # initialize connections
-    # for node in ring:
-    #     logging.info("Initialized connections for node id: " + str(node.node_id))
-    #     node.initialize_connections()
+    for node in ring:
+        logging.info("Started node id: " + str(node.node_id))
+        threads.append(node.start_node())
 
-    # send a message to the next node
-    # ring[0].send_message(0, "Hello world!", Direction.NEXT)
+    while ring[0].get_is_all_ready() == False:
+        pass
+
+    print("All nodes are ready")
+
+    # initialize connections
+    for node in ring:
+        logging.info("Initialized connections for node id: " + str(node.node_id))
+        node.initialize_connections()
+
     
 
+    # send a message to the next node
+    ring[0].inject_message(1, "Hello world!", Direction.PREVIOUS)
+    
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, datefmt="%H:%M:%S")
