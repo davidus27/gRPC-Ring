@@ -18,13 +18,8 @@ def generate_ring_data(nodes_amount: int, pivot, ip="127.0.0.1", port=60000) -> 
 
 
 def get_pivot(nodes_amount: int, ip="127.0.0.1", port=60000) -> tuple:
-    pivot = PivotNode(NodeInfo(node_id=-1,
-                pivot=(ip, port),
-                previous=(None, None),
-                skeleton=(ip, port),
-                next=(None, None)
-        ))
-    pivot.set_nodes_amount(nodes_amount)
+    skeleton = (ip, port)
+    pivot = PivotNode(1, nodes_amount, skeleton)
     pivot.start_node()
     return pivot
 
@@ -52,7 +47,7 @@ def create_ring(ring_generator, pivot):
     return ring
 
 def main():
-    nodes_amount = 100
+    nodes_amount = 20
 
     # create a pivot node
     pivot_node = get_pivot(nodes_amount)

@@ -19,11 +19,6 @@ class OwrStub(object):
                 request_serializer=owr__pb2.owr_request.SerializeToString,
                 response_deserializer=owr__pb2.owr_response.FromString,
                 )
-        self.receive_alive_message = channel.unary_unary(
-                '/owr.Owr/receive_alive_message',
-                request_serializer=owr__pb2.alive_request.SerializeToString,
-                response_deserializer=owr__pb2.alive_response.FromString,
-                )
 
 
 class OwrServicer(object):
@@ -36,12 +31,6 @@ class OwrServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def receive_alive_message(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_OwrServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -49,11 +38,6 @@ def add_OwrServicer_to_server(servicer, server):
                     servicer.receive_message,
                     request_deserializer=owr__pb2.owr_request.FromString,
                     response_serializer=owr__pb2.owr_response.SerializeToString,
-            ),
-            'receive_alive_message': grpc.unary_unary_rpc_method_handler(
-                    servicer.receive_alive_message,
-                    request_deserializer=owr__pb2.alive_request.FromString,
-                    response_serializer=owr__pb2.alive_response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -82,6 +66,52 @@ class Owr(object):
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
+
+class PivotStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.receive_alive_message = channel.unary_unary(
+                '/owr.Pivot/receive_alive_message',
+                request_serializer=owr__pb2.alive_request.SerializeToString,
+                response_deserializer=owr__pb2.alive_response.FromString,
+                )
+
+
+class PivotServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def receive_alive_message(self, request, context):
+        """Function invoked to send the request
+        rpc receive_message(owr_request) returns (owr_response) {}
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_PivotServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'receive_alive_message': grpc.unary_unary_rpc_method_handler(
+                    servicer.receive_alive_message,
+                    request_deserializer=owr__pb2.alive_request.FromString,
+                    response_serializer=owr__pb2.alive_response.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'owr.Pivot', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Pivot(object):
+    """Missing associated documentation comment in .proto file."""
+
     @staticmethod
     def receive_alive_message(request,
             target,
@@ -93,7 +123,7 @@ class Owr(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_alive_message',
+        return grpc.experimental.unary_unary(request, target, '/owr.Pivot/receive_alive_message',
             owr__pb2.alive_request.SerializeToString,
             owr__pb2.alive_response.FromString,
             options, channel_credentials,

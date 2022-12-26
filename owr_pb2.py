@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\towr.proto\x12\x03owr\"\x1f\n\ralive_request\x12\x0e\n\x06nodeid\x18\x01 \x01(\x05\"\x10\n\x0e\x61live_response\"_\n\x0bowr_request\x12\x12\n\nreceiverid\x18\x01 \x01(\x05\x12\x10\n\x08senderid\x18\x02 \x01(\x05\x12\x19\n\x11sending_direction\x18\x03 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\"\x0e\n\x0cowr_response2\x83\x01\n\x03Owr\x12\x38\n\x0freceive_message\x12\x10.owr.owr_request\x1a\x11.owr.owr_response\"\x00\x12\x42\n\x15receive_alive_message\x12\x12.owr.alive_request\x1a\x13.owr.alive_response\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\towr.proto\x12\x03owr\"\x1f\n\ralive_request\x12\x0e\n\x06nodeid\x18\x01 \x01(\x05\"\x10\n\x0e\x61live_response\"_\n\x0bowr_request\x12\x12\n\nreceiverid\x18\x01 \x01(\x05\x12\x10\n\x08senderid\x18\x02 \x01(\x05\x12\x19\n\x11sending_direction\x18\x03 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\"\x0e\n\x0cowr_response2?\n\x03Owr\x12\x38\n\x0freceive_message\x12\x10.owr.owr_request\x1a\x11.owr.owr_response\"\x00\x32K\n\x05Pivot\x12\x42\n\x15receive_alive_message\x12\x12.owr.alive_request\x1a\x13.owr.alive_response\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'owr_pb2', globals())
@@ -28,6 +28,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _OWR_REQUEST._serialized_end=164
   _OWR_RESPONSE._serialized_start=166
   _OWR_RESPONSE._serialized_end=180
-  _OWR._serialized_start=183
-  _OWR._serialized_end=314
+  _OWR._serialized_start=182
+  _OWR._serialized_end=245
+  _PIVOT._serialized_start=247
+  _PIVOT._serialized_end=322
 # @@protoc_insertion_point(module_scope)
