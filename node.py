@@ -11,11 +11,11 @@ from enum import Enum
 
 @dataclass
 class NodeInfo:
-    node_id: tuple = None
-    previous: tuple = None
-    next: tuple = None
-    skeleton: tuple = None
-    pivot: tuple = None
+    node_id: int = None
+    previous: tuple = ()
+    next: tuple = ()
+    skeleton: tuple = ()
+    pivot: tuple = ()
 
 class Direction(Enum):
     NEXT = 0
@@ -64,24 +64,13 @@ class Connection:
 class Node(owr_pb2_grpc.OwrServicer):
     def __init__(self, node_context: NodeInfo):
         self.node_id = node_context.node_id
-        
+        self.is_node_ready = False
+
         self.previous_node = Connection(*node_context.previous)
         self.skeleton_node = Connection(*node_context.skeleton)
         self.next_node = Connection(*node_context.next)
         self.pivot_node = Connection(*node_context.pivot)
-        
 
-        # info for the pivot node
-        self.is_node_ready = False
-        self.is_all_ready = False
-        self.nodes_amount = 0
-        self.nodes_ready = set()
-
-    def set_nodes_amount(self, nodes_amount: int):
-        self.nodes_amount = nodes_amount
-
-    def get_is_all_ready(self) -> bool:
-        return self.is_all_ready
 
     def receive_message(self, request, context):
         # check if the message is for this node
@@ -98,15 +87,9 @@ class Node(owr_pb2_grpc.OwrServicer):
 
         return owr_pb2.owr_response()
 
-
     def receive_alive_message(self, request, context):
        # this will run only on the pivot node
-       alive_node = request.nodeid
-       self.nodes_ready.add(alive_node)
-       self.is_all_ready = len(self.nodes_ready) == self.nodes_amount
-       
-       logging.info("Nodes " + str(self.nodes_ready) + " is ready")
-       return owr_pb2.alive_response()
+       raise NotImplementedError
 
     def __send_alive_message(self):
         response = self.pivot_node.send_am_alive(self.node_id)
@@ -125,7 +108,7 @@ class Node(owr_pb2_grpc.OwrServicer):
         return response
 
 
-    def __create_skeleton(self):
+    def create_skeleton(self):
         # start listening on the skeleton node
         server = self.skeleton_node.initialize_server(self)
         # set ready state
@@ -136,16 +119,14 @@ class Node(owr_pb2_grpc.OwrServicer):
 
         # inform the pivot node that this node is ready
         self.__send_alive_message()
-
-        server.wait_for_termination()
-
         logging.info("Skeleton node initialized: " +  str(self.node_id))
 
+        server.wait_for_termination()
 
     def start_node(self):
         # create a thread that will listen until sel.is_ready == True
         # then send a message to the next node
-        thread = Thread(target=self.__create_skeleton)
+        thread = Thread(target=self.create_skeleton)
         thread.daemon = True
         thread.start()
         
@@ -161,64 +142,43 @@ class Node(owr_pb2_grpc.OwrServicer):
         # initialize the connections
         self.previous_node.initialize_client()
         self.next_node.initialize_client()
-
         logging.info("Connections initialized")
 
 
+class PivotNode(Node):
+    def __init__(self, node_context: NodeInfo):
+        super().__init__(node_context)
+        # info for the pivot node
+        self.is_all_ready = False
+        self.nodes_amount = 0
+        self.nodes_ready = set()
 
+    def set_nodes_amount(self, nodes_amount: int):
+        self.nodes_amount = nodes_amount
 
-# yields current, previous and next (ip,port) tuple
-def get_ring_info(nodes_amount: int, ip: str, port: str) -> tuple:
-    pivot = (ip, port) # first one
-    for node_id in range(nodes_amount):
-        previous = (ip, port + (node_id - 1) % nodes_amount)
-        skeleton = (ip, port + node_id)
-        next = (ip, port + (node_id + 1) % nodes_amount)
-        yield node_id, pivot, previous, skeleton, next
+    def get_is_all_ready(self) -> bool:
+        return self.is_all_ready
 
+    def get_node_connection_detail(self) -> tuple:
+        return (self.skeleton_node.ip, self.skeleton_node.port)
 
-def main():
-    nodes_amount = 10
-    port = 60000
-    ip_address = "127.0.0.1"
+    def create_skeleton(self):
+        # start listening on the skeleton node
+        server = self.skeleton_node.initialize_server(self)
+        # set ready state
+        self.is_node_ready = True
 
-    ring = []
-    threads = []
-    ring_generator = get_ring_info(nodes_amount, ip_address, port)
-    for node_id, pivot, previous, skeleton, next in ring_generator:
-        params = NodeInfo(node_id=node_id,
-                pivot=pivot,
-                previous=previous,
-                skeleton=skeleton,
-                next=next
-        )
+        # initialize the connection with the pivot node
+        self.pivot_node.initialize_client()
+        logging.info("Pivot node initialized: " +  str(self.node_id))
 
-        node = Node(params)
-        ring.append(node)
+        server.wait_for_termination()
 
-    # set pivot
-    ring[0].set_nodes_amount(nodes_amount)
-
-    for node in ring:
-        logging.info("Started node id: " + str(node.node_id))
-        threads.append(node.start_node())
-
-    while ring[0].get_is_all_ready() == False:
-        pass
-
-    print("All nodes are ready")
-
-    # initialize connections
-    for node in ring:
-        logging.info("Initialized connections for node id: " + str(node.node_id))
-        node.initialize_connections()
-
-    
-
-    # send a message to the next node
-    ring[0].inject_message(1, "Hello world!", Direction.PREVIOUS)
-    
-
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO, datefmt="%H:%M:%S")
-    main()
+    def receive_alive_message(self, request, context):
+       # this will run only on the pivot node
+       alive_node = request.nodeid
+       self.nodes_ready.add(alive_node)
+       self.is_all_ready = len(self.nodes_ready) == self.nodes_amount
+       
+       logging.info("Nodes " + str(self.nodes_ready) + " is ready")
+       return owr_pb2.alive_response()
