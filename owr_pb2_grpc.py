@@ -19,6 +19,16 @@ class OwrStub(object):
                 request_serializer=owr__pb2.owr_request.SerializeToString,
                 response_deserializer=owr__pb2.owr_response.FromString,
                 )
+        self.receive_election_message = channel.unary_unary(
+                '/owr.Owr/receive_election_message',
+                request_serializer=owr__pb2.election_request.SerializeToString,
+                response_deserializer=owr__pb2.election_response.FromString,
+                )
+        self.receive_termination_message = channel.unary_unary(
+                '/owr.Owr/receive_termination_message',
+                request_serializer=owr__pb2.termination_request.SerializeToString,
+                response_deserializer=owr__pb2.termination_response.FromString,
+                )
 
 
 class OwrServicer(object):
@@ -31,6 +41,18 @@ class OwrServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def receive_election_message(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def receive_termination_message(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OwrServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -38,6 +60,16 @@ def add_OwrServicer_to_server(servicer, server):
                     servicer.receive_message,
                     request_deserializer=owr__pb2.owr_request.FromString,
                     response_serializer=owr__pb2.owr_response.SerializeToString,
+            ),
+            'receive_election_message': grpc.unary_unary_rpc_method_handler(
+                    servicer.receive_election_message,
+                    request_deserializer=owr__pb2.election_request.FromString,
+                    response_serializer=owr__pb2.election_response.SerializeToString,
+            ),
+            'receive_termination_message': grpc.unary_unary_rpc_method_handler(
+                    servicer.receive_termination_message,
+                    request_deserializer=owr__pb2.termination_request.FromString,
+                    response_serializer=owr__pb2.termination_response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -63,6 +95,40 @@ class Owr(object):
         return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_message',
             owr__pb2.owr_request.SerializeToString,
             owr__pb2.owr_response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def receive_election_message(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_election_message',
+            owr__pb2.election_request.SerializeToString,
+            owr__pb2.election_response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def receive_termination_message(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/owr.Owr/receive_termination_message',
+            owr__pb2.termination_request.SerializeToString,
+            owr__pb2.termination_response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

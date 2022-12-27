@@ -14,6 +14,18 @@ class alive_response(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 
+class election_request(_message.Message):
+    __slots__ = ["direction", "node_id"]
+    DIRECTION_FIELD_NUMBER: _ClassVar[int]
+    NODE_ID_FIELD_NUMBER: _ClassVar[int]
+    direction: int
+    node_id: int
+    def __init__(self, node_id: _Optional[int] = ..., direction: _Optional[int] = ...) -> None: ...
+
+class election_response(_message.Message):
+    __slots__ = []
+    def __init__(self) -> None: ...
+
 class owr_request(_message.Message):
     __slots__ = ["content", "receiverid", "senderid", "sending_direction"]
     CONTENT_FIELD_NUMBER: _ClassVar[int]
@@ -27,5 +39,15 @@ class owr_request(_message.Message):
     def __init__(self, receiverid: _Optional[int] = ..., senderid: _Optional[int] = ..., sending_direction: _Optional[int] = ..., content: _Optional[str] = ...) -> None: ...
 
 class owr_response(_message.Message):
+    __slots__ = []
+    def __init__(self) -> None: ...
+
+class termination_request(_message.Message):
+    __slots__ = ["terminating_node_id"]
+    TERMINATING_NODE_ID_FIELD_NUMBER: _ClassVar[int]
+    terminating_node_id: int
+    def __init__(self, terminating_node_id: _Optional[int] = ...) -> None: ...
+
+class termination_response(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...

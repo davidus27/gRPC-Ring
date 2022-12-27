@@ -5,13 +5,31 @@ package owr;
 service Owr {
     // Function invoked to send the request
     rpc receive_message(owr_request) returns (owr_response) {}
-    // rpc receive_alive_message(alive_request) returns (alive_response) {}
+    rpc receive_election_message(election_request) returns (election_response) {}
+    rpc receive_termination_message(termination_request) returns (termination_response) {}
 }
 
 service Pivot {
     // Function invoked to send the request
     // rpc receive_message(owr_request) returns (owr_response) {}
     rpc receive_alive_message(alive_request) returns (alive_response) {}
+}
+
+
+message election_request {
+    int32 node_id = 1;
+    int32 direction = 2;
+}
+
+message election_response {
+}
+
+message termination_request {
+    int32 terminating_node_id = 1;
+    int32 direction = 2;
+}
+
+message termination_response {
 }
 
 // The response for AmAlive message
