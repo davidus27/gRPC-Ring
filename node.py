@@ -10,7 +10,6 @@ import owr_pb2_grpc
 from dataclasses import dataclass
 from enum import Enum
 
-mutex = threading.Lock()
 
 def log(node_id: int, sender_id: int, receiver_id: int, type=""):
     # fomat: 
@@ -21,7 +20,7 @@ def log(node_id: int, sender_id: int, receiver_id: int, type=""):
 
 @dataclass
 class NodeInfo:
-    node_id: int = None
+    node_id: int
     previous: tuple = ()
     next: tuple = ()
     skeleton: tuple = ()
