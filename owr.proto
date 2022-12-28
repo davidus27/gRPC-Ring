@@ -17,8 +17,9 @@ service Pivot {
 
 
 message election_request {
-    int32 node_id = 1;
+    int32 leading_node_id = 1;
     int32 direction = 2;
+    int32 sender_id = 3;
 }
 
 message election_response {

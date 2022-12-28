@@ -15,12 +15,14 @@ class alive_response(_message.Message):
     def __init__(self) -> None: ...
 
 class election_request(_message.Message):
-    __slots__ = ["direction", "node_id"]
+    __slots__ = ["direction", "leading_node_id", "sender_id"]
     DIRECTION_FIELD_NUMBER: _ClassVar[int]
-    NODE_ID_FIELD_NUMBER: _ClassVar[int]
+    LEADING_NODE_ID_FIELD_NUMBER: _ClassVar[int]
+    SENDER_ID_FIELD_NUMBER: _ClassVar[int]
     direction: int
-    node_id: int
-    def __init__(self, node_id: _Optional[int] = ..., direction: _Optional[int] = ...) -> None: ...
+    leading_node_id: int
+    sender_id: int
+    def __init__(self, leading_node_id: _Optional[int] = ..., direction: _Optional[int] = ..., sender_id: _Optional[int] = ...) -> None: ...
 
 class election_response(_message.Message):
     __slots__ = []
@@ -43,10 +45,12 @@ class owr_response(_message.Message):
     def __init__(self) -> None: ...
 
 class termination_request(_message.Message):
-    __slots__ = ["terminating_node_id"]
+    __slots__ = ["direction", "terminating_node_id"]
+    DIRECTION_FIELD_NUMBER: _ClassVar[int]
     TERMINATING_NODE_ID_FIELD_NUMBER: _ClassVar[int]
+    direction: int
     terminating_node_id: int
-    def __init__(self, terminating_node_id: _Optional[int] = ...) -> None: ...
+    def __init__(self, terminating_node_id: _Optional[int] = ..., direction: _Optional[int] = ...) -> None: ...
 
 class termination_response(_message.Message):
     __slots__ = []

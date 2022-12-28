@@ -10,12 +10,14 @@ import owr_pb2_grpc
 from dataclasses import dataclass
 from enum import Enum
 
-def log(node_id: int, sender_id: int, receiver_id: int):
+mutex = threading.Lock()
+
+def log(node_id: int, sender_id: int, receiver_id: int, type=""):
     # fomat: 
     # <Node ID, Time, Sender ID, Receiver ID>
     # make time format hours minutes seconds
     executed_time = time.strftime("%H:%M:%S", time.localtime())
-    logging.info(f"<{node_id}, {executed_time}, {sender_id}, {receiver_id}>")
+    logging.info(f"<{node_id}, {executed_time}, {sender_id}, {receiver_id}> {type}")
 
 @dataclass
 class NodeInfo:
@@ -38,7 +40,8 @@ class State(Enum):
 
 
 class Connection:
-    def __init__(self, ip, port):
+    def __init__(self, node_id, ip, port):
+        self.node_id = node_id
         self.ip = ip
         self.port = port
 
@@ -72,7 +75,6 @@ class PivotConnection(Connection):
         server.start()
         return server
 
-
 class NodeConnection(Connection):
     def create_stub(self):
         self.stub = owr_pb2_grpc.OwrStub(self.channel)
@@ -87,7 +89,7 @@ class NodeConnection(Connection):
 
     def send_election_message(self, node_id: int, direction: Direction):
         return self.stub.receive_election_message(owr_pb2.election_request(
-            node_id=node_id,
+            leading_node_id=node_id,
             direction=direction.value))
 
     def send_termination_message(self, node_id: int, direction: Direction):
@@ -123,7 +125,7 @@ class Node(owr_pb2_grpc.OwrServicer):
 
     def receive_message(self, request: owr_pb2.owr_request, context):
         # check if the message is for this node
-        log(self.node_id, request.senderid, request.receiverid)
+        log(self.node_id, request.senderid, self.node_id, "MSG")
         logging.debug("I am node " + str(self.node_id) + ", message is from " +
                      str(request.senderid) + " to " + str(request.receiverid))
 
@@ -155,7 +157,7 @@ class Node(owr_pb2_grpc.OwrServicer):
 
     # main code for the election algorithm
     def receive_election_message(self, request: owr_pb2.election_request, context):
-        log(self.node_id, request.node_id, self.node_id)
+        log(self.node_id, request.leading_node_id, self.node_id, "ALGORITHM")
 
         if not self.sent_em:
             direction = Direction(request.direction)
@@ -163,34 +165,39 @@ class Node(owr_pb2_grpc.OwrServicer):
             self.inject_election_message(self.node_id, direction)
             return owr_pb2.election_response()
         
-        if request.node_id > self.node_id:
-            logging.debug("Discarding the message " + str(request.node_id))
+        if request.leading_node_id > self.node_id:
+            logging.debug("Discarding the message " + str(request.leading_node_id))
             return owr_pb2.election_response()
         
-        if request.node_id < self.node_id:
-            logging.debug("I am defeated " +  str(self.node_id) + " by " + str(request.node_id))
+        if request.leading_node_id < self.node_id:
+            logging.debug("I am defeated " +  str(self.node_id) + " by " + str(request.leading_node_id))
             self.state = State.DEFEATED
             direction = Direction(request.direction)
-            self.leading_node_id = request.node_id
-            self.inject_election_message(request.node_id, direction)
+            self.leading_node_id = request.leading_node_id
+            self.inject_election_message(request.leading_node_id, direction)
             return owr_pb2.election_response()
 
-        if request.node_id == self.node_id:
+        if request.leading_node_id == self.node_id:
             logging.debug("I am the leader " + str(self.node_id))
             self.state = State.LEADER
             self.leading_node_id = self.node_id
+            # send the termination message to the next node
+            self.inject_termination_message(self.node_id, Direction.NEXT)
+
             return owr_pb2.election_response()
 
 
     def receive_termination_message(self, request, context):
-        logging.debug("Termination message received from " + str(request.terminating_node_id))
+        log(self.node_id, request.terminating_node_id, self.node_id, "TERMINATION")
+        logging.debug("Termination message on " + str(self.node_id) + " received from " + str(request.terminating_node_id))
         if self.leading_terminated:
             return owr_pb2.termination_response()
 
         # set it to true so that the message is not sent again
         self.leading_terminated = True
         # send the message to the next node
-        self.inject_termination_message(self.node_id, Direction(request.sending_direction))
+        self.inject_termination_message(request.terminating_node_id, Direction(request.direction))
+        # end the node
         return owr_pb2.termination_response()
         
 
@@ -204,6 +211,7 @@ class Node(owr_pb2_grpc.OwrServicer):
                      str(sender_id) + " to the next node")
 
         receiving_node = self.get_directional_node(direction)
+        # log(self.node_id, sender_id, receiving_node.node_id)
         response = receiving_node.send_message(sender_id,
                                                receiver_id,
                                                message,
@@ -214,17 +222,13 @@ class Node(owr_pb2_grpc.OwrServicer):
     def inject_election_message(self, node_id: int, direction: Direction):
         logging.debug("Sending election message " + str(node_id) + " to " + str(direction))
         receiving_node = self.get_directional_node(direction)
-        response = receiving_node.send_election_message(node_id, direction)
+        receiving_node.send_election_message(node_id, direction)
 
-        if self.state == State.LEADER:
-            # send the termination message to BOTH nodes
-            self.inject_termination_message(self.node_id, Direction.NEXT)
-            self.inject_termination_message(self.node_id, Direction.PREVIOUS)
 
     def inject_termination_message(self, node_id: int, direction: Direction = Direction.NEXT):
-        logging.debug("Sending termination message " + str(node_id) + " to " + str(direction))
+        logging.debug("Sending termination message from " + str(self.node_id) + " to " + str(node_id) + " " + str(direction))
         receiving_node = self.get_directional_node(direction)
-        response = receiving_node.send_termination_message(node_id, direction)
+        receiving_node.send_termination_message(node_id, direction)
 
 
     def start_leader_election(self, direction: Direction = Direction.NEXT):
@@ -233,7 +237,7 @@ class Node(owr_pb2_grpc.OwrServicer):
 
     def create_skeleton(self):
         # start listening on the skeleton node
-        server = self.skeleton_node.initialize_server(self)
+        node_server = self.skeleton_node.initialize_server(self)
         # set ready state
         self.is_node_ready = True
 
@@ -241,11 +245,12 @@ class Node(owr_pb2_grpc.OwrServicer):
         self.pivot_node.initialize_client()
 
         # inform the pivot node that this node is ready
+        log(self.node_id, self.node_id, self.pivot_node.node_id, "ALIVE_MSG")
         self.pivot_node.send_am_alive(self.node_id)
         logging.debug("Alive message sent to pivot node")
         logging.debug("Skeleton node initialized: " + str(self.node_id))
 
-        server.wait_for_termination()
+        node_server.wait_for_termination()
 
     def start_node(self):
         # create a thread that will listen until sel.is_ready == True
@@ -272,7 +277,7 @@ class PivotNode(owr_pb2_grpc.PivotServicer):
     def __init__(self, node_id: int, nodes_amount: int, skeleton_node: Connection):
         self.node_id = node_id
         self.nodes_amount = nodes_amount
-        self.skeleton_node = PivotConnection(*skeleton_node)
+        self.skeleton_node = PivotConnection(node_id, *skeleton_node)
 
         self.is_node_ready = False
         self.is_all_ready = False
@@ -282,10 +287,18 @@ class PivotNode(owr_pb2_grpc.PivotServicer):
         return self.is_all_ready
 
     def get_node_connection_detail(self) -> tuple:
-        return (self.skeleton_node.ip, self.skeleton_node.port)
+        return (self.node_id, self.skeleton_node.ip, self.skeleton_node.port)
+
+    def set_nodes_amount(self, nodes_amount: int):
+        self.nodes_amount = nodes_amount
+    
+    def reset_ready_state(self):
+        self.nodes_ready = set()
+        self.is_all_ready = False
 
     def receive_alive_message(self, request, context):
         # this will run only on the pivot node
+        # log(self.node_id, request.nodeid, self.node_id)
         alive_node = request.nodeid
         self.nodes_ready.add(alive_node)
         self.is_all_ready = len(self.nodes_ready) == self.nodes_amount
@@ -295,13 +308,13 @@ class PivotNode(owr_pb2_grpc.PivotServicer):
 
     def create_skeleton(self):
         # start listening on the skeleton node
-        server = self.skeleton_node.initialize_server(self)
+        node_server = self.skeleton_node.initialize_server(self)
         # set ready state
         self.is_node_ready = True
 
         logging.debug("Pivot node initialized: " + str(self.node_id))
 
-        server.wait_for_termination()
+        node_server.wait_for_termination()
 
     def start_node(self):
         # create a thread that will listen until sel.is_ready == True
