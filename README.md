@@ -123,7 +123,7 @@ V prípade, že uzol bol uznaný za najmenší pošle správu svojmu susedovi. T
 
 ## UML
 Zjednodušenú UML schému celkového `node.py` môžeme vidieť dole na obrázku.
-![UML](./imgs/uml.png)
+![UML](./imgs/uml.PNG)
 
 
 # Spustenie
@@ -180,5 +180,9 @@ Avšak v našom prípade posielame správy sekvenčne. To znamená, že máme je
 
 Z našich dát 150tich spustených iterácií môžeme vidieť, že počet správ algoritmu rastie rýchlejšie, ako počet uzlov, ale má podstatne menši počet správ ako komplexita Θ(n log n).
 
-![Graph of number of messages per node](./imgs/worst_case.png)
+![Graph of number of messages per node](./imgs/worst_case.PNG)
+
+Ako môžeme vidieť, tak aj samotný beh algoritmu rastie lineárnym spôsobom. 
+
+![Graph of time execution of iterations](./imgs/execution_time.PNG)
 
