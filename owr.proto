@@ -3,15 +3,12 @@ syntax = "proto3";
 package owr;
 
 service Owr {
-    // Function invoked to send the request
     rpc receive_message(owr_request) returns (owr_response) {}
     rpc receive_election_message(election_request) returns (election_response) {}
     rpc receive_termination_message(termination_request) returns (termination_response) {}
 }
 
 service Pivot {
-    // Function invoked to send the request
-    // rpc receive_message(owr_request) returns (owr_response) {}
     rpc receive_alive_message(alive_request) returns (alive_response) {}
 }
 
