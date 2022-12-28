@@ -1,0 +1,647 @@
+E1228 00:59:11.452384100   10466 socket_utils_common_posix.cc:223]     check for SO_REUSEPORT: UNKNOWN:Protocol not available {created_time:"2022-12-28T00:59:11.4514159+01:00", errno:92, os_error:"Protocol not available", syscall:"getsockopt(SO_REUSEPORT)"}
+DEBUG Pivot node initialized: -1
+DEBUG Skeleton node is ready
+DEBUG Started node id: 0
+DEBUG Skeleton node is ready
+DEBUG Started node id: 1
+DEBUG Skeleton node is ready
+DEBUG Started node id: 2
+DEBUG Skeleton node is ready
+DEBUG Started node id: 3
+DEBUG Skeleton node is ready
+DEBUG Started node id: 4
+INFO <0, 00:59:11, 0, -1> ALIVE_MSG
+INFO <1, 00:59:11, 1, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+INFO <2, 00:59:11, 2, -1> ALIVE_MSG
+INFO <3, 00:59:11, 3, -1> ALIVE_MSG
+INFO <4, 00:59:11, 4, -1> ALIVE_MSG
+DEBUG Started node id: 5
+INFO <5, 00:59:12, 5, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 6
+DEBUG Nodes {1} is ready
+DEBUG Nodes {0, 1} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 1
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 0
+INFO <6, 00:59:12, 6, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Nodes {0, 1, 2} is ready
+DEBUG Nodes {0, 1, 2, 3} is ready
+DEBUG Nodes {0, 1, 2, 3, 4} is ready
+DEBUG Nodes {0, 1, 2, 3, 4, 5} is ready
+DEBUG Started node id: 7
+DEBUG Alive message sent to pivot node
+DEBUG Alive message sent to pivot node
+DEBUG Alive message sent to pivot node
+DEBUG Alive message sent to pivot node
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6} is ready
+DEBUG Skeleton node initialized: 2
+DEBUG Skeleton node initialized: 3
+DEBUG Skeleton node initialized: 4
+INFO <7, 00:59:12, 7, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 5
+DEBUG Alive message sent to pivot node
+DEBUG Started node id: 8
+DEBUG Skeleton node initialized: 6
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7} is ready
+INFO <8, 00:59:12, 8, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 7
+DEBUG Started node id: 9
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 8
+INFO <9, 00:59:12, 9, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 10
+INFO <10, 00:59:12, 10, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} is ready
+DEBUG Started node id: 11
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 9
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10} is ready
+INFO <11, 00:59:12, 11, -1> ALIVE_MSG
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node is ready
+DEBUG Started node id: 12
+DEBUG Skeleton node initialized: 10
+INFO <12, 00:59:12, 12, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 13
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 11
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 12
+INFO <13, 00:59:12, 13, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 14
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 13
+INFO <14, 00:59:12, 14, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 15
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14} is ready
+INFO <15, 00:59:13, 15, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 16
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 14
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 15
+INFO <16, 00:59:13, 16, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 17
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 16
+INFO <17, 00:59:13, 17, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 18
+INFO <18, 00:59:13, 18, -1> ALIVE_MSG
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17} is ready
+DEBUG Skeleton node is ready
+DEBUG Started node id: 19
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 17
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 18
+INFO <19, 00:59:13, 19, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 20
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19} is ready
+INFO <20, 00:59:13, 20, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Alive message sent to pivot node
+DEBUG Started node id: 21
+DEBUG Skeleton node initialized: 19
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 20
+INFO <21, 00:59:13, 21, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 22
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21} is ready
+INFO <22, 00:59:13, 22, -1> ALIVE_MSG
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node is ready
+DEBUG Started node id: 23
+DEBUG Skeleton node initialized: 21
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 22
+INFO <23, 00:59:14, 23, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 24
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23} is ready
+INFO <24, 00:59:14, 24, -1> ALIVE_MSG
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 23
+DEBUG Started node id: 25
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24} is ready
+DEBUG Alive message sent to pivot node
+INFO <25, 00:59:14, 25, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 24
+DEBUG Started node id: 26
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25} is ready
+INFO <26, 00:59:14, 26, -1> ALIVE_MSG
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 25
+DEBUG Started node id: 27
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26} is ready
+INFO <27, 00:59:14, 27, -1> ALIVE_MSG
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 26
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27} is ready
+DEBUG Started node id: 28
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 27
+INFO <28, 00:59:14, 28, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 29
+INFO <29, 00:59:14, 29, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 30
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 28
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29} is ready
+INFO <30, 00:59:14, 30, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 31
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 29
+INFO <31, 00:59:14, 31, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 32
+INFO <32, 00:59:14, 32, -1> ALIVE_MSG
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30} is ready
+DEBUG Skeleton node is ready
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31} is ready
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32} is ready
+DEBUG Started node id: 33
+DEBUG Alive message sent to pivot node
+DEBUG Alive message sent to pivot node
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 30
+DEBUG Skeleton node initialized: 31
+DEBUG Skeleton node initialized: 32
+INFO <33, 00:59:14, 33, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 34
+INFO <34, 00:59:15, 34, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 35
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 33
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34} is ready
+INFO <35, 00:59:15, 35, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 36
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 34
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 35
+INFO <36, 00:59:15, 36, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 37
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 36
+DEBUG Skeleton node is ready
+DEBUG Started node id: 38
+INFO <37, 00:59:15, 37, -1> ALIVE_MSG
+INFO <38, 00:59:15, 38, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Started node id: 39
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37} is ready
+DEBUG Alive message sent to pivot node
+DEBUG Skeleton node initialized: 37
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38} is ready
+DEBUG Alive message sent to pivot node
+INFO <39, 00:59:15, 39, -1> ALIVE_MSG
+DEBUG Skeleton node is ready
+DEBUG Skeleton node initialized: 38
+DEBUG Nodes {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39} is ready
+DEBUG All nodes are ready
+DEBUG Initialized connections for node id: 0
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 1
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 2
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 3
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 4
+DEBUG Alive message sent to pivot node
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 5
+DEBUG Skeleton node initialized: 39
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 6
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 7
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 8
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 9
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 10
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 11
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 12
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 13
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 14
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 15
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 16
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 17
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 18
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 19
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 20
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 21
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 22
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 23
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 24
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 25
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 26
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 27
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 28
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 29
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 30
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 31
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 32
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 33
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 34
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 35
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 36
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 37
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 38
+DEBUG Connections initialized
+DEBUG Initialized connections for node id: 39
+DEBUG Connections initialized
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <1, 00:59:16, 0, 1> ALGORITHM
+DEBUG Sending election message 1 to Direction.NEXT
+INFO <2, 00:59:16, 1, 2> ALGORITHM
+DEBUG Sending election message 2 to Direction.NEXT
+INFO <3, 00:59:16, 2, 3> ALGORITHM
+DEBUG Sending election message 3 to Direction.NEXT
+INFO <4, 00:59:16, 3, 4> ALGORITHM
+DEBUG Sending election message 4 to Direction.NEXT
+INFO <5, 00:59:16, 4, 5> ALGORITHM
+DEBUG Sending election message 5 to Direction.NEXT
+INFO <6, 00:59:16, 5, 6> ALGORITHM
+DEBUG Sending election message 6 to Direction.NEXT
+INFO <7, 00:59:16, 6, 7> ALGORITHM
+DEBUG Sending election message 7 to Direction.NEXT
+INFO <8, 00:59:16, 7, 8> ALGORITHM
+DEBUG Sending election message 8 to Direction.NEXT
+INFO <9, 00:59:16, 8, 9> ALGORITHM
+DEBUG Sending election message 9 to Direction.NEXT
+INFO <10, 00:59:16, 9, 10> ALGORITHM
+DEBUG Sending election message 10 to Direction.NEXT
+INFO <11, 00:59:16, 10, 11> ALGORITHM
+DEBUG Sending election message 11 to Direction.NEXT
+INFO <12, 00:59:16, 11, 12> ALGORITHM
+DEBUG Sending election message 12 to Direction.NEXT
+INFO <13, 00:59:16, 12, 13> ALGORITHM
+DEBUG Sending election message 13 to Direction.NEXT
+INFO <14, 00:59:16, 13, 14> ALGORITHM
+DEBUG Sending election message 14 to Direction.NEXT
+INFO <15, 00:59:16, 14, 15> ALGORITHM
+DEBUG Sending election message 15 to Direction.NEXT
+INFO <16, 00:59:16, 15, 16> ALGORITHM
+DEBUG Sending election message 16 to Direction.NEXT
+INFO <17, 00:59:16, 16, 17> ALGORITHM
+DEBUG Sending election message 17 to Direction.NEXT
+INFO <18, 00:59:16, 17, 18> ALGORITHM
+DEBUG Sending election message 18 to Direction.NEXT
+INFO <19, 00:59:16, 18, 19> ALGORITHM
+DEBUG Sending election message 19 to Direction.NEXT
+INFO <20, 00:59:16, 19, 20> ALGORITHM
+DEBUG Sending election message 20 to Direction.NEXT
+INFO <21, 00:59:16, 20, 21> ALGORITHM
+DEBUG Sending election message 21 to Direction.NEXT
+INFO <22, 00:59:16, 21, 22> ALGORITHM
+DEBUG Sending election message 22 to Direction.NEXT
+INFO <23, 00:59:16, 22, 23> ALGORITHM
+DEBUG Sending election message 23 to Direction.NEXT
+INFO <24, 00:59:16, 23, 24> ALGORITHM
+DEBUG Sending election message 24 to Direction.NEXT
+INFO <25, 00:59:16, 24, 25> ALGORITHM
+DEBUG Sending election message 25 to Direction.NEXT
+INFO <26, 00:59:16, 25, 26> ALGORITHM
+DEBUG Sending election message 26 to Direction.NEXT
+INFO <27, 00:59:16, 26, 27> ALGORITHM
+DEBUG Sending election message 27 to Direction.NEXT
+INFO <28, 00:59:16, 27, 28> ALGORITHM
+DEBUG Sending election message 28 to Direction.NEXT
+INFO <29, 00:59:16, 28, 29> ALGORITHM
+DEBUG Sending election message 29 to Direction.NEXT
+INFO <30, 00:59:16, 29, 30> ALGORITHM
+DEBUG Sending election message 30 to Direction.NEXT
+INFO <31, 00:59:16, 30, 31> ALGORITHM
+DEBUG Sending election message 31 to Direction.NEXT
+INFO <32, 00:59:16, 31, 32> ALGORITHM
+DEBUG Sending election message 32 to Direction.NEXT
+INFO <33, 00:59:16, 32, 33> ALGORITHM
+DEBUG Sending election message 33 to Direction.NEXT
+INFO <34, 00:59:16, 33, 34> ALGORITHM
+DEBUG Sending election message 34 to Direction.NEXT
+INFO <35, 00:59:16, 34, 35> ALGORITHM
+DEBUG Sending election message 35 to Direction.NEXT
+INFO <36, 00:59:16, 35, 36> ALGORITHM
+DEBUG Sending election message 36 to Direction.NEXT
+INFO <37, 00:59:16, 36, 37> ALGORITHM
+DEBUG Sending election message 37 to Direction.NEXT
+INFO <38, 00:59:16, 37, 38> ALGORITHM
+DEBUG Sending election message 38 to Direction.NEXT
+INFO <39, 00:59:16, 38, 39> ALGORITHM
+DEBUG Sending election message 39 to Direction.NEXT
+INFO <0, 00:59:16, 39, 0> ALGORITHM
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <1, 00:59:16, 0, 1> ALGORITHM
+DEBUG I am defeated 1 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <2, 00:59:16, 0, 2> ALGORITHM
+DEBUG I am defeated 2 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <3, 00:59:16, 0, 3> ALGORITHM
+DEBUG I am defeated 3 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <4, 00:59:16, 0, 4> ALGORITHM
+DEBUG I am defeated 4 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <5, 00:59:16, 0, 5> ALGORITHM
+DEBUG I am defeated 5 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <6, 00:59:16, 0, 6> ALGORITHM
+DEBUG I am defeated 6 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <7, 00:59:16, 0, 7> ALGORITHM
+DEBUG I am defeated 7 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <8, 00:59:16, 0, 8> ALGORITHM
+DEBUG I am defeated 8 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <9, 00:59:16, 0, 9> ALGORITHM
+DEBUG I am defeated 9 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <10, 00:59:16, 0, 10> ALGORITHM
+DEBUG I am defeated 10 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <11, 00:59:16, 0, 11> ALGORITHM
+DEBUG I am defeated 11 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <12, 00:59:16, 0, 12> ALGORITHM
+DEBUG I am defeated 12 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <13, 00:59:16, 0, 13> ALGORITHM
+DEBUG I am defeated 13 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <14, 00:59:16, 0, 14> ALGORITHM
+DEBUG I am defeated 14 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <15, 00:59:16, 0, 15> ALGORITHM
+DEBUG I am defeated 15 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <16, 00:59:16, 0, 16> ALGORITHM
+DEBUG I am defeated 16 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <17, 00:59:16, 0, 17> ALGORITHM
+DEBUG I am defeated 17 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <18, 00:59:16, 0, 18> ALGORITHM
+DEBUG I am defeated 18 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <19, 00:59:16, 0, 19> ALGORITHM
+DEBUG I am defeated 19 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <20, 00:59:16, 0, 20> ALGORITHM
+DEBUG I am defeated 20 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <21, 00:59:16, 0, 21> ALGORITHM
+DEBUG I am defeated 21 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <22, 00:59:16, 0, 22> ALGORITHM
+DEBUG I am defeated 22 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <23, 00:59:16, 0, 23> ALGORITHM
+DEBUG I am defeated 23 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <24, 00:59:16, 0, 24> ALGORITHM
+DEBUG I am defeated 24 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <25, 00:59:16, 0, 25> ALGORITHM
+DEBUG I am defeated 25 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <26, 00:59:16, 0, 26> ALGORITHM
+DEBUG I am defeated 26 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <27, 00:59:16, 0, 27> ALGORITHM
+DEBUG I am defeated 27 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <28, 00:59:16, 0, 28> ALGORITHM
+DEBUG I am defeated 28 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <29, 00:59:16, 0, 29> ALGORITHM
+DEBUG I am defeated 29 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <30, 00:59:16, 0, 30> ALGORITHM
+DEBUG I am defeated 30 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <31, 00:59:16, 0, 31> ALGORITHM
+DEBUG I am defeated 31 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <32, 00:59:16, 0, 32> ALGORITHM
+DEBUG I am defeated 32 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <33, 00:59:16, 0, 33> ALGORITHM
+DEBUG I am defeated 33 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <34, 00:59:16, 0, 34> ALGORITHM
+DEBUG I am defeated 34 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <35, 00:59:16, 0, 35> ALGORITHM
+DEBUG I am defeated 35 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <36, 00:59:16, 0, 36> ALGORITHM
+DEBUG I am defeated 36 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <37, 00:59:16, 0, 37> ALGORITHM
+DEBUG I am defeated 37 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <38, 00:59:16, 0, 38> ALGORITHM
+DEBUG I am defeated 38 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <39, 00:59:16, 0, 39> ALGORITHM
+DEBUG I am defeated 39 by 0
+DEBUG Sending election message 0 to Direction.NEXT
+INFO <0, 00:59:16, 0, 0> ALGORITHM
+DEBUG I am the leader 0
+DEBUG Sending termination message from 0 to 0 Direction.NEXT
+INFO <1, 00:59:16, 0, 1> TERMINATION
+DEBUG Termination message on 1 received from 0
+DEBUG Sending termination message from 1 to 0 Direction.NEXT
+INFO <2, 00:59:16, 0, 2> TERMINATION
+DEBUG Termination message on 2 received from 0
+DEBUG Sending termination message from 2 to 0 Direction.NEXT
+INFO <3, 00:59:16, 0, 3> TERMINATION
+DEBUG Termination message on 3 received from 0
+DEBUG Sending termination message from 3 to 0 Direction.NEXT
+INFO <4, 00:59:16, 0, 4> TERMINATION
+DEBUG Termination message on 4 received from 0
+DEBUG Sending termination message from 4 to 0 Direction.NEXT
+INFO <5, 00:59:16, 0, 5> TERMINATION
+DEBUG Termination message on 5 received from 0
+DEBUG Sending termination message from 5 to 0 Direction.NEXT
+INFO <6, 00:59:16, 0, 6> TERMINATION
+DEBUG Termination message on 6 received from 0
+DEBUG Sending termination message from 6 to 0 Direction.NEXT
+INFO <7, 00:59:16, 0, 7> TERMINATION
+DEBUG Termination message on 7 received from 0
+DEBUG Sending termination message from 7 to 0 Direction.NEXT
+INFO <8, 00:59:16, 0, 8> TERMINATION
+DEBUG Termination message on 8 received from 0
+DEBUG Sending termination message from 8 to 0 Direction.NEXT
+INFO <9, 00:59:16, 0, 9> TERMINATION
+DEBUG Termination message on 9 received from 0
+DEBUG Sending termination message from 9 to 0 Direction.NEXT
+INFO <10, 00:59:16, 0, 10> TERMINATION
+DEBUG Termination message on 10 received from 0
+DEBUG Sending termination message from 10 to 0 Direction.NEXT
+INFO <11, 00:59:16, 0, 11> TERMINATION
+DEBUG Termination message on 11 received from 0
+DEBUG Sending termination message from 11 to 0 Direction.NEXT
+INFO <12, 00:59:16, 0, 12> TERMINATION
+DEBUG Termination message on 12 received from 0
+DEBUG Sending termination message from 12 to 0 Direction.NEXT
+INFO <13, 00:59:16, 0, 13> TERMINATION
+DEBUG Termination message on 13 received from 0
+DEBUG Sending termination message from 13 to 0 Direction.NEXT
+INFO <14, 00:59:16, 0, 14> TERMINATION
+DEBUG Termination message on 14 received from 0
+DEBUG Sending termination message from 14 to 0 Direction.NEXT
+INFO <15, 00:59:16, 0, 15> TERMINATION
+DEBUG Termination message on 15 received from 0
+DEBUG Sending termination message from 15 to 0 Direction.NEXT
+INFO <16, 00:59:16, 0, 16> TERMINATION
+DEBUG Termination message on 16 received from 0
+DEBUG Sending termination message from 16 to 0 Direction.NEXT
+INFO <17, 00:59:16, 0, 17> TERMINATION
+DEBUG Termination message on 17 received from 0
+DEBUG Sending termination message from 17 to 0 Direction.NEXT
+INFO <18, 00:59:16, 0, 18> TERMINATION
+DEBUG Termination message on 18 received from 0
+DEBUG Sending termination message from 18 to 0 Direction.NEXT
+INFO <19, 00:59:16, 0, 19> TERMINATION
+DEBUG Termination message on 19 received from 0
+DEBUG Sending termination message from 19 to 0 Direction.NEXT
+INFO <20, 00:59:16, 0, 20> TERMINATION
+DEBUG Termination message on 20 received from 0
+DEBUG Sending termination message from 20 to 0 Direction.NEXT
+INFO <21, 00:59:16, 0, 21> TERMINATION
+DEBUG Termination message on 21 received from 0
+DEBUG Sending termination message from 21 to 0 Direction.NEXT
+INFO <22, 00:59:16, 0, 22> TERMINATION
+DEBUG Termination message on 22 received from 0
+DEBUG Sending termination message from 22 to 0 Direction.NEXT
+INFO <23, 00:59:16, 0, 23> TERMINATION
+DEBUG Termination message on 23 received from 0
+DEBUG Sending termination message from 23 to 0 Direction.NEXT
+INFO <24, 00:59:16, 0, 24> TERMINATION
+DEBUG Termination message on 24 received from 0
+DEBUG Sending termination message from 24 to 0 Direction.NEXT
+INFO <25, 00:59:16, 0, 25> TERMINATION
+DEBUG Termination message on 25 received from 0
+DEBUG Sending termination message from 25 to 0 Direction.NEXT
+INFO <26, 00:59:16, 0, 26> TERMINATION
+DEBUG Termination message on 26 received from 0
+DEBUG Sending termination message from 26 to 0 Direction.NEXT
+INFO <27, 00:59:16, 0, 27> TERMINATION
+DEBUG Termination message on 27 received from 0
+DEBUG Sending termination message from 27 to 0 Direction.NEXT
+INFO <28, 00:59:16, 0, 28> TERMINATION
+DEBUG Termination message on 28 received from 0
+DEBUG Sending termination message from 28 to 0 Direction.NEXT
+INFO <29, 00:59:16, 0, 29> TERMINATION
+DEBUG Termination message on 29 received from 0
+DEBUG Sending termination message from 29 to 0 Direction.NEXT
+INFO <30, 00:59:16, 0, 30> TERMINATION
+DEBUG Termination message on 30 received from 0
+DEBUG Sending termination message from 30 to 0 Direction.NEXT
+INFO <31, 00:59:16, 0, 31> TERMINATION
+DEBUG Termination message on 31 received from 0
+DEBUG Sending termination message from 31 to 0 Direction.NEXT
+INFO <32, 00:59:16, 0, 32> TERMINATION
+DEBUG Termination message on 32 received from 0
+DEBUG Sending termination message from 32 to 0 Direction.NEXT
+INFO <33, 00:59:16, 0, 33> TERMINATION
+DEBUG Termination message on 33 received from 0
+DEBUG Sending termination message from 33 to 0 Direction.NEXT
+INFO <34, 00:59:16, 0, 34> TERMINATION
+DEBUG Termination message on 34 received from 0
+DEBUG Sending termination message from 34 to 0 Direction.NEXT
+INFO <35, 00:59:16, 0, 35> TERMINATION
+DEBUG Termination message on 35 received from 0
+DEBUG Sending termination message from 35 to 0 Direction.NEXT
+INFO <36, 00:59:16, 0, 36> TERMINATION
+DEBUG Termination message on 36 received from 0
+DEBUG Sending termination message from 36 to 0 Direction.NEXT
+INFO <37, 00:59:16, 0, 37> TERMINATION
+DEBUG Termination message on 37 received from 0
+DEBUG Sending termination message from 37 to 0 Direction.NEXT
+INFO <38, 00:59:16, 0, 38> TERMINATION
+DEBUG Termination message on 38 received from 0
+DEBUG Sending termination message from 38 to 0 Direction.NEXT
+INFO <39, 00:59:16, 0, 39> TERMINATION
+DEBUG Termination message on 39 received from 0
+DEBUG Sending termination message from 39 to 0 Direction.NEXT
+INFO <0, 00:59:16, 0, 0> TERMINATION
+DEBUG Termination message on 0 received from 0
+DEBUG Sending termination message from 0 to 0 Direction.NEXT
+INFO <1, 00:59:16, 0, 1> TERMINATION
+DEBUG Termination message on 1 received from 0
